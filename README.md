@@ -9,7 +9,7 @@
 
 <br>
 
-👉 **[Live Streamlit App](INSERT_STREAMLIT_APP_LINK_HERE)**
+👉 **[Live Streamlit App](https://optimas.streamlit.app)**
 
 ## 📖 Project Overview
 Project Optima is an interactive, production-ready MLOps dashboard designed for advanced cluster intelligence. It provides deep visibility into cluster resource metrics, temporal capacity trends, and features an integrated Machine Learning prediction engine to proactively forecast CPU and RAM requests based on granular job specifications.
