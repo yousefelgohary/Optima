@@ -1,0 +1,11 @@
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+env/
+.env
+.streamlit/secrets.toml
+borg_traces_data.csv
+Project_Optima_Cluster_Resource_Prediction.ipynb
+.ipynb_checkpoints/
