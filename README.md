@@ -26,6 +26,10 @@ Project Optima is an interactive, production-ready MLOps dashboard designed for 
 
 ## 🚀 Installation & Usage
 
+**⚠️ Important Data Requirement:**
+The dataset (`borg_traces_data.csv`) is ~314MB and is not hosted on GitHub due to file size limits. 
+Before running the application, you must download the dataset from [this Google Drive link](https://drive.google.com/file/d/1G8UB_Spq0XHJvbNHbwNKHOICZP_ut9c_/view?usp=sharing) and place it inside the `datasets/` directory.
+
 1. **Clone the repository:**
    ```bash
    git clone git@github.com:yousefelgohary/Optima.git

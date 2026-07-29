@@ -80,6 +80,15 @@ def load_sample_data(n: int = 50_000, seed: int = 42) -> pd.DataFrame:
     """
     logger.info("Reading CSV from %s", DATA_PATH)
 
+    if not DATA_PATH.exists():
+        st.error(
+            "⚠️ **Dataset Missing!**\n\n"
+            "The `borg_traces_data.csv` file could not be found in the `datasets/` directory.\n\n"
+            "Please download the dataset from [this Google Drive link](https://drive.google.com/file/d/1G8UB_Spq0XHJvbNHbwNKHOICZP_ut9c_/view?usp=sharing) "
+            "and place it in the `datasets/` folder, then refresh this page."
+        )
+        st.stop()
+
     # Read only columns we actually need for EDA to save memory
     usecols = [
         "scheduling_class", "collection_type", "priority", "instance_index",

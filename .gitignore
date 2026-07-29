@@ -9,3 +9,5 @@ env/
 .ipynb_checkpoints/
 
 datasets/borg_traces_data.csv
+
+datasets/*.csv
