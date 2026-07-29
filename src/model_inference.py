@@ -49,7 +49,23 @@ def load_models() -> dict:
     for key, fname in _HGBR_FILES.items():
         path = MODELS_DIR / fname
         logger.info("Loading %s from %s", key, path)
-        loaded[key] = joblib.load(path)
+        try:
+            loaded[key] = joblib.load(path)
+        except ModuleNotFoundError as e:
+            st.error(
+                f"⚠️ **Model Loading Failed!**\n\n"
+                f"A dependency required to load `{fname}` is missing or has a version mismatch.\n"
+                f"Error details: `{e}`\n\n"
+                "**Fix:** Ensure `scikit-learn==1.7.2` (or the exact version used during training) is properly installed."
+            )
+            st.stop()
+        except Exception as e:
+            st.error(
+                f"⚠️ **Model Loading Failed!**\n\n"
+                f"Could not load `{fname}`.\n"
+                f"Error details: `{e}`"
+            )
+            st.stop()
     logger.info("HGBR models loaded successfully.")
     return loaded
 

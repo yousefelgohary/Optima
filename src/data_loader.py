@@ -81,7 +81,8 @@ def load_sample_data(n: int = 50_000, seed: int = 42) -> pd.DataFrame:
     logger.info("Reading CSV from %s", DATA_PATH)
 
     if not DATA_PATH.exists():
-        st.info("⚠️ Dataset not found locally. Preparing to download from Google Drive...")
+        msg_container = st.empty()
+        msg_container.info("⚠️ Dataset not found locally. Preparing to download from Google Drive...")
         try:
             import gdown
             DATA_PATH.parent.mkdir(parents=True, exist_ok=True)
@@ -90,8 +91,9 @@ def load_sample_data(n: int = 50_000, seed: int = 42) -> pd.DataFrame:
             with st.spinner("Downloading dataset from cloud storage (~314MB). This may take a few minutes..."):
                 gdown.download(id=file_id, output=str(DATA_PATH), quiet=False)
                 
-            st.success("Download complete! Loading data...")
+            msg_container.empty()  # Clear the info message after completion
         except ImportError:
+            msg_container.empty()
             st.error(
                 "⚠️ **Missing `gdown` Library!**\n\n"
                 "The dataset could not be downloaded automatically. Please run `pip install gdown` "
@@ -100,6 +102,7 @@ def load_sample_data(n: int = 50_000, seed: int = 42) -> pd.DataFrame:
             )
             st.stop()
         except Exception as e:
+            msg_container.empty()
             st.error(f"⚠️ **Download Failed!**\n\nError: {e}\n\nPlease download manually from [Google Drive](https://drive.google.com/file/d/1G8UB_Spq0XHJvbNHbwNKHOICZP_ut9c_/view?usp=sharing) into `datasets/`.")
             st.stop()
 
