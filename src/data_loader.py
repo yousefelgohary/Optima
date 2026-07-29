@@ -81,20 +81,27 @@ def load_sample_data(n: int = 50_000, seed: int = 42) -> pd.DataFrame:
     logger.info("Reading CSV from %s", DATA_PATH)
 
     if not DATA_PATH.exists():
-        with st.spinner("Downloading dataset from cloud storage... This may take a minute."):
-            try:
-                import gdown
-                url = "https://drive.google.com/file/d/1G8UB_Spq0XHJvbNHbwNKHOICZP_ut9c_/view?usp=sharing"
-                DATA_PATH.parent.mkdir(parents=True, exist_ok=True)
-                # Use fuzzy=True so gdown can handle the /view link gracefully
-                gdown.download(url, str(DATA_PATH), quiet=False, fuzzy=True)
-            except Exception as e:
-                st.error(
-                    f"⚠️ **Auto-download failed!**\n\nError: {e}\n\n"
-                    "Please download the dataset manually from [this Google Drive link](https://drive.google.com/file/d/1G8UB_Spq0XHJvbNHbwNKHOICZP_ut9c_/view?usp=sharing) "
-                    "and place it in the `datasets/` folder."
-                )
-                st.stop()
+        st.info("⚠️ Dataset not found locally. Preparing to download from Google Drive...")
+        try:
+            import gdown
+            DATA_PATH.parent.mkdir(parents=True, exist_ok=True)
+            file_id = '1G8UB_Spq0XHJvbNHbwNKHOICZP_ut9c_'
+            
+            with st.spinner("Downloading dataset from cloud storage (~314MB). This may take a few minutes..."):
+                gdown.download(id=file_id, output=str(DATA_PATH), quiet=False)
+                
+            st.success("Download complete! Loading data...")
+        except ImportError:
+            st.error(
+                "⚠️ **Missing `gdown` Library!**\n\n"
+                "The dataset could not be downloaded automatically. Please run `pip install gdown` "
+                "or download the dataset manually from [this Google Drive link](https://drive.google.com/file/d/1G8UB_Spq0XHJvbNHbwNKHOICZP_ut9c_/view?usp=sharing) "
+                "and place it in the `datasets/` folder."
+            )
+            st.stop()
+        except Exception as e:
+            st.error(f"⚠️ **Download Failed!**\n\nError: {e}\n\nPlease download manually from [Google Drive](https://drive.google.com/file/d/1G8UB_Spq0XHJvbNHbwNKHOICZP_ut9c_/view?usp=sharing) into `datasets/`.")
+            st.stop()
 
     # Read only columns we actually need for EDA to save memory
     usecols = [
