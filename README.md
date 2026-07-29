@@ -40,13 +40,13 @@ Project Optima is an interactive, production-ready MLOps dashboard designed for 
 
 3. **Run the Streamlit app locally:**
    ```bash
-   streamlit run "1_🏠_Home.py"
+   streamlit run app.py
    ```
 
 ## 📁 Repository Structure
 ```
 Optima/
-├── 1_🏠_Home.py                  # Main landing page for the Streamlit dashboard
+├── app.py                        # Main landing page for the Streamlit dashboard
 ├── pages/
 │   ├── 2_📊_Interactive_EDA.py    # Exploratory Data Analysis & visualisations
 │   └── 3_⚙️_Prediction_Engine.py # ML inference & capacity utilisation metrics
@@ -57,7 +57,10 @@ Optima/
 │   ├── ui_components.py          # Custom CSS, layout components, and Plotly charts
 │   └── config.py                 # Centralised constants and file paths
 ├── optima_models/                # Serialised ML models (joblib) & scaler
-├── borg_traces_data.csv          # Sample trace dataset (add to .gitignore if large)
+├── datasets/                     
+│   └── borg_traces_data.csv      # Sample trace dataset
+├── notebooks/
+│   └── Project_Optima_Cluster_Resource_Prediction.ipynb  # Original Jupyter notebook
 ├── requirements.txt              # Project dependencies
 └── README.md                     # Project documentation
 ```

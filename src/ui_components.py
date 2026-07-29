@@ -231,7 +231,7 @@ def render_sidebar_brand() -> None:
         unsafe_allow_html=True,
     )
     
-    st.sidebar.page_link("1_🏠_Home.py", label="Home", icon="🏠")
+    st.sidebar.page_link("app.py", label="Home", icon="🏠")
     st.sidebar.page_link("pages/2_📊_Interactive_EDA.py", label="Interactive EDA", icon="📊")
     st.sidebar.page_link("pages/3_⚙️_Prediction_Engine.py", label="Prediction Engine", icon="⚙️")
 

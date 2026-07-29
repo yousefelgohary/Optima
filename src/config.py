@@ -18,7 +18,7 @@ PROJECT_ROOT: Path = Path(__file__).resolve().parent.parent
 # Paths
 # ---------------------------------------------------------------------------
 MODELS_DIR: Path = PROJECT_ROOT / "optima_models"
-DATA_PATH: Path = PROJECT_ROOT / "borg_traces_data.csv"
+DATA_PATH: Path = PROJECT_ROOT / "datasets" / "borg_traces_data.csv"
 MANIFEST_PATH: Path = MODELS_DIR / "optima_feature_manifest.json"
 
 # ---------------------------------------------------------------------------
